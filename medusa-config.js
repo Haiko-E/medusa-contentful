@@ -64,13 +64,13 @@ module.exports = {
     eventBus: {
       resolve: '@medusajs/event-bus-redis',
       options: {
-        redisUrl: 'redis://localhost:6379',
+        redisUrl: process.env.REDIS_URL,
       },
     },
     cacheService: {
       resolve: '@medusajs/cache-redis',
       options: {
-        redisUrl: 'redis://localhost:6379',
+        redisUrl: process.env.REDIS_URL,
       },
     },
   },
