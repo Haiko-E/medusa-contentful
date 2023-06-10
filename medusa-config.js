@@ -32,13 +32,13 @@ const plugins = [
       environment: CONTENTFUL_ENV,
     },
   },
-  {
-    resolve: '@medusajs/admin',
-    /** @type {import('@medusajs/admin').PluginOptions} */
-    options: {
-      autoRebuild: true,
-    },
-  },
+  // {
+  //   resolve: '@medusajs/admin',
+  //   /** @type {import('@medusajs/admin').PluginOptions} */
+  //   options: {
+  //     autoRebuild: true,
+  //   },
+  // },
   // Uncomment to add Stripe support.
   // You can create a Stripe account via: https://stripe.com
   // {
