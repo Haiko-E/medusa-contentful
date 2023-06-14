@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "migrate:contentful": "./contentful-migrations/index.js",
-    "import:contentful": "contentful space import --space-id $CONTENTFUL_SPACE_ID --mt $CONTENTFUL_ACCESS_TOKEN --content-file  ./data/contentful-seed.json",
+    "import:contentful": "contentful space import --space-id qxp7w1cbg2e7 --mt CFPAT-uyMomKY2vYSnW1A4jvv5cb2GDn4oW6Wxc3gjbUO4wGg --content-file  ./data/contentful-seed.json",
     "seed:contentful": "dotenv-run-script .env -- import:contentful",
     "seed": "medusa seed -f ./data/seed.json",
     "build": "babel src -d dist --extensions \".ts,.js\"",

@@ -6,7 +6,7 @@ const STORE_CORS = process.env.STORE_CORS || 'http://localhost:8000';
 
 // Database URL (here we use a local database called medusa-development)
 const DATABASE_URL =
-  process.env.DATABASE_URL || 'postgres://localhost/my-medusa-store';
+  process.env.DATABASE_URL || 'postgres://postgres:admin@localhost/my-medusa-store';
 
 // Medusa uses Redis, so this needs configuration as well
 const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
@@ -17,21 +17,23 @@ const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET || '';
 
 // Contentful Variables
 const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID || '';
-const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN || '';
+const CONTENTFUL_ACCESS_TOKEN =
+  process.env.CONTENTFUL_ACCESS_TOKEN ||
+  'CFPAT-uyMomKY2vYSnW1A4jvv5cb2GDn4oW6Wxc3gjbUO4wGg';
 const CONTENTFUL_ENV = process.env.CONTENTFUL_ENV || '';
 
 // This is the place to include plugins. See API documentation for a thorough guide on plugins.
 const plugins = [
   `medusa-fulfillment-manual`,
   `medusa-payment-manual`,
-  {
-    resolve: `medusa-plugin-contentful`,
-    options: {
-      space_id: CONTENTFUL_SPACE_ID,
-      access_token: CONTENTFUL_ACCESS_TOKEN,
-      environment: CONTENTFUL_ENV,
-    },
-  },
+  // {
+  //   resolve: `medusa-plugin-contentful`,
+  //   options: {
+  //     space_id: CONTENTFUL_SPACE_ID,
+  //     access_token: CONTENTFUL_ACCESS_TOKEN,
+  //     environment: CONTENTFUL_ENV,
+  //   },
+  // },
   {
     resolve: '@medusajs/admin',
     /** @type {import('@medusajs/admin').PluginOptions} */
@@ -75,14 +77,17 @@ module.exports = {
     eventBus: {
       resolve: '@medusajs/event-bus-redis',
       options: {
-        redisUrl: process.env.REDIS_URL,
+        redisUrl: REDIS_URL,
       },
     },
     cacheService: {
       resolve: '@medusajs/cache-redis',
       options: {
-        redisUrl: process.env.REDIS_URL,
+        redisUrl: REDIS_URL,
       },
+    },
+    eventBus: {
+      resolve: '@medusajs/event-bus-local',
     },
   },
 };
